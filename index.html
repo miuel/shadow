@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Shadow</title>
+</head>
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥MASSIVE 🔥 ATTACK!</h1>
+  </div>
+
+  <style>
+  @import url('https://fonts.googleapis.com/css?family=Barrio');
+  html {
+    color:black;
+    font-family: 'Barrio', cursive;
+  }
+
+  body {
+    margin: 0;
+    background: #fff;
+    
+  }
+
+  .hero {
+    min-height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:black;
+  }
+
+  h1 {
+    text-shadow: 10px 10px 0 rgba(0,0,0,0.5);
+    font-size: 100px;
+  }
+  </style>
+
+<script>
+  const hero = document.querySelector('.hero');
+  const text = document.querySelector('h1');
+  const walk = 500 //100 px
+
+  hero.addEventListener('mousemove' , handleShadow);
+
+  function handleShadow(e) {
+
+    let { offsetX : x, offsetY : y} = e;
+
+    const { offsetWidth : width, offsetHeight : height } = hero;
+
+    if(this !== e.target) {
+      x = x + e.target.offsetLeft;
+      y = y + e.target.offsetTop; 
+    }
+
+    const xWalk =  Math.round((x / width * walk) - (walk / 2))
+    const yWalk = Math.round((y / height * walk) - (walk / 2))
+    
+    text.style.textShadow = `
+      ${xWalk}px ${yWalk}px 4px rgba(219, 146, 39, 1),
+      ${xWalk * -1}px ${yWalk}px 3px rgba(69, 61, 74, 1),
+      ${yWalk}px ${xWalk * -1}px 0 rgba(209, 204, 224, 1),
+      ${yWalk * -1}px ${xWalk}px 10px rgba(63, 61, 98, 1)
+      `;
+    console.log(xWalk)
+  }
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
